@@ -7,7 +7,8 @@ const PostsRoutes = require("./routes/routes");
 const app = express();
 
 //Middlewares
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded());
 
 //Routes Middleware
 app.use("/twitter", PostsRoutes);
