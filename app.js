@@ -1,8 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mysqlConnection = require("./connection");
 // Import Routes
-const PostsRoutes = require("./routes/posts");
+const PostsRoutes = require("./routes/routes");
 
 // APP
 const app = express();
@@ -11,6 +10,6 @@ const app = express();
 app.use(bodyParser.json());
 
 //Routes Middleware
-app.use("/posts", PostsRoutes);
+app.use("/twitter", PostsRoutes);
 
 app.listen(3000);
