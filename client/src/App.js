@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
+import MakeTweet from "./components/makeTweet";
 
 const App = () => {
   const [tweetList, setTweetList] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`/twitter`)
-      .then(res => res.data)
-      .then(data => setTweetList(data));
+    const interval = setInterval(() => {
+      axios
+        .get(`/twitter`)
+        .then(res => res.data)
+        .then(data => setTweetList(data));
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -21,6 +25,7 @@ const App = () => {
           {m.id} - {m.content}
         </p>
       ))}
+      <MakeTweet />
     </div>
   );
 };
