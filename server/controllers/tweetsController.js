@@ -1,13 +1,16 @@
 const mysqlConnection = require("../connection");
 
 exports.getTweets = (req, res) => {
-  mysqlConnection.query("SELECT * from TWEET", (err, rows, fields) => {
-    if (err) {
-      res.status(404).send({ error: "Something failed!" });
-    } else {
-      res.json(rows);
+  mysqlConnection.query(
+    "SELECT id, content from TWEET",
+    (err, rows, fields) => {
+      if (err) {
+        res.status(404).send({ error: "Something failed!" });
+      } else {
+        res.json(rows);
+      }
     }
-  });
+  );
 };
 
 exports.makeTweet = (req, res) => {
