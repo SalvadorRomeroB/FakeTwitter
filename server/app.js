@@ -13,4 +13,4 @@ app.use(express.urlencoded());
 //Routes Middleware
 app.use("/twitter", PostsRoutes);
 
-app.listen(3000);
+app.listen(8000);
