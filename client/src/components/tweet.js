@@ -2,11 +2,19 @@ import React, {useState} from 'react';
 
 const Tweet = (props) => {
 
+    function getPp() {
+        if (props.username == 'klauskie') {
+            return "https://i.kym-cdn.com/photos/images/newsfeed/001/700/569/1c4.jpg"
+        } else {
+            return "https://i.pinimg.com/originals/8e/fb/05/8efb05db4589b84459e22257b4e06e03.jpg";
+        }
+    }
+
   return (
     <div className="box">
         <a className="row" href={`twitter/${props.id}`}>
             <div className="col-2-custom">
-                <img className="picture" src="https://i.kym-cdn.com/photos/images/newsfeed/001/700/569/1c4.jpg" />
+                <img className="picture" src={getPp()} />
             </div>
             <div className="col-10">
                 <div>

@@ -5,6 +5,13 @@ const MakeTweet = () => {
   const [message, setMessage] = useState("");
   const [id, setId] = useState("1");
 
+  function textAreaAdjust() {
+    let o = document.getElementById("text-entry");
+    o.style.height = "1px";
+    o.style.height = (25+o.scrollHeight)+"px";
+    console.log('hola');
+  }
+
   const sendMessage = () => {
     if (message != "") {
       axios({
@@ -27,7 +34,7 @@ const MakeTweet = () => {
         <img className="picture" src="https://i.kym-cdn.com/photos/images/newsfeed/001/700/569/1c4.jpg" />
       </div>
       <div className="col-10">
-        <textarea className="text-input"
+        <textarea id="text-entry" className="text-input"
           name="Tweet"
           placeholder="What's happening?"
           value={message}
@@ -56,11 +63,15 @@ const MakeTweet = () => {
               border-radius: 30px;
               width: 80px;
               height: 40px;
-              background-color: #1991DA;
+              background-color: #1CA1F2;
               color: #FFF;
               font-weight: 700;
               font-size: 15px;
               border: none;
+           }
+
+           .tweet-btn:hover {
+            background-color: #1991DA;
            }
 
            .footer {
@@ -79,6 +90,15 @@ const MakeTweet = () => {
            }
 
         `}</style>
+
+        <script jsx>{`
+            function textAreaAdjust(o) {
+              o.style.height = "1px";
+              o.style.height = (25+o.scrollHeight)+"px";
+              console.log('hola');
+            }
+        `}
+        </script>
 
 
     </div>
