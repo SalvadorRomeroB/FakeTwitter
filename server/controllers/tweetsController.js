@@ -77,15 +77,7 @@ exports.updateReply = (req, res) => {
 exports.detailTweet = (req, res) => {
   let tweet_id = req.params.id;
 
-  // tweetById(tweet_id, function (result, err){
-  //   if (err) {
-  //     res.status(404).send({ error: err });
-  //   } else {
-  //     res.json(result);
-  //   }
-  // });
-
-  replysById(tweet_id, function(result, err) {
+  tweetById(tweet_id, function (result, err) {
     if (err) {
       res.status(404).send({ error: err });
     } else {
@@ -94,9 +86,42 @@ exports.detailTweet = (req, res) => {
   });
 };
 
+exports.getTweetReplys = (req, res) => {
+  let tweet_id = req.params.id;
+
+  replysById(tweet_id, function (result, err) {
+    if (err) {
+      res.status(404).send({ error: err });
+    } else {
+      res.json(result);
+    }
+  });
+};
+
+exports.getTweetAndReply = (req, res) => {
+  let tweet_id = req.params.id;
+
+  replysById(tweet_id, function (reply_data, err) {
+    if (err) {
+      res.status(404).send({ error: err });
+    } else {
+      tweetById(tweet_id, function (thread_data, e) {
+        if (err) {
+          res.status(404).send({ error: err });
+        } else {
+          let data = {}
+          data['thread'] = thread_data
+          data['replys'] = reply_data
+          res.json(data)
+        }
+      })
+    }
+  });
+};
+
 let tweetById = (tweet_id, callback) => {
   mysqlConnection.query(
-    `SELECT TWEET.id, content, username, name from TWEET JOIN USER ON TWEET.user_id = USER.id WHERE TWEET.id = ${tweet_id}`,
+    `SELECT TWEET.id, content, username, name, user_id from TWEET JOIN USER ON TWEET.user_id = USER.id WHERE TWEET.id = ${tweet_id}`,
     (err, rows, fields) => {
       callback(rows, err);
     }
