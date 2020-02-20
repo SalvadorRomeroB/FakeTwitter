@@ -4,7 +4,6 @@ import axios from "axios";
 const Compose = (props) => {
 
     const [message, setMessage] = useState("");
-    const [id, setId] = useState("1");
 
     function textAreaAdjust() {
         let o = document.getElementById("text-entry");
@@ -15,7 +14,6 @@ const Compose = (props) => {
 
     const sendMessage = () => {
         if (message != "") {
-            setId(1)
             axios({
                 method: "post",
                 url: "/twitter/compose/reply",
@@ -24,12 +22,12 @@ const Compose = (props) => {
                 },
                 data: {
                     content: message,
-                    user_id: id,
-                    thread_id: props.id
+                    user_id: props.user_id,
+                    thread_id: props.thread_id
                 }
             });
             setMessage("");
-            return <div></div>;
+            window.location.replace("/thread/" + props.thread_id);
         }
     };
 
@@ -44,7 +42,7 @@ const Compose = (props) => {
     return (
         <div id="back">
             <div id="reply-box" className="box">
-                <a id="close-btn" href={`/thread/${props.id}`}>x</a>
+                <a id="close-btn" href={`/thread/${props.thread_id}`}>x</a>
                 <br />
                 <div className="row">
                     <div className="col-2-custom">
@@ -103,6 +101,7 @@ const Compose = (props) => {
             #reply-box {
                 z-index: 10;
                 margin: 10% auto;
+                border-radius: 20px;
             }
 
             #back {
@@ -112,7 +111,7 @@ const Compose = (props) => {
                 left:0;
                 width:100%;
                 height:100%;
-                background:rgba(0,0,0,0.8);
+                background: rgba(110, 118, 125, 0.4);
             }
 
             .vertical-line {

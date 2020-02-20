@@ -121,7 +121,7 @@ exports.getTweetAndReply = (req, res) => {
 
 let tweetById = (tweet_id, callback) => {
   mysqlConnection.query(
-    `SELECT TWEET.id, content, username, name from TWEET JOIN USER ON TWEET.user_id = USER.id WHERE TWEET.id = ${tweet_id}`,
+    `SELECT TWEET.id, content, username, name, user_id from TWEET JOIN USER ON TWEET.user_id = USER.id WHERE TWEET.id = ${tweet_id}`,
     (err, rows, fields) => {
       callback(rows, err);
     }
