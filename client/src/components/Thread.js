@@ -18,7 +18,6 @@ const Thread = (props) => {
     return () => clearInterval(interval);
   }, []);
 
-  let data = []
   let thread = []
   let replys = []
 
@@ -28,7 +27,6 @@ const Thread = (props) => {
 
       {
         Object.keys(tweetList).forEach(function (key) {
-          data.push(tweetList[key])
           Object.keys(tweetList[key]).forEach(function (index) {
             if (key == 'thread') {
               thread.push(tweetList[key][index])
