@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Tweet = (props) => {
+const Reply = (props) => {
 
     function getPp() {
         if (props.username == 'klauskie') {
@@ -12,7 +12,7 @@ const Tweet = (props) => {
 
     return (
         <div className="box">
-            <a className="row" href={`thread/${props.id}`}>
+            <div className="row">
                 <div className="col-2-custom">
                     <img className="picture" src={getPp()} />
                 </div>
@@ -32,10 +32,7 @@ const Tweet = (props) => {
                         </svg>
                     </div>
                 </div>
-            </a>
-
-
-
+            </div>
 
 
             <style jsx>{`
@@ -91,4 +88,4 @@ const Tweet = (props) => {
     )
 }
 
-export default Tweet
+export default Reply

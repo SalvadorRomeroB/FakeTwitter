@@ -13,7 +13,7 @@ const App = () => {
         .get(`/twitter`)
         .then(res => res.data)
         .then(data => setTweetList(data));
-    }, 2000);
+    }, 100);
     return () => clearInterval(interval);
   }, []);
 

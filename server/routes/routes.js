@@ -1,10 +1,12 @@
 const express = require("express");
 const Router = express.Router();
 
-const { getTweets, makeTweet, makeReply, detailTweet, updateTweet, updateReply } = require("../controllers/tweetsController");
+const { getTweets, makeTweet, makeReply, detailTweet, getTweetReplys, getTweetAndReply, updateTweet, updateReply } = require("../controllers/tweetsController");
 
 Router.get("/", getTweets);
-Router.get("/:id(\\d+)/", detailTweet);
+Router.get("/tweet/:id(\\d+)/", detailTweet);
+Router.get("/tweet/replys/:id(\\d+)/", getTweetReplys);
+Router.get("/tweet/complete/:id(\\d+)/", getTweetAndReply);
 
 Router.post("/compose/tweet", makeTweet);
 Router.post("/compose/reply", makeReply);
