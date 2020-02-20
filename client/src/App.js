@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import MakeTweet from "./components/makeTweet";
-import Tweet from './components/tweet'
+import Tweet from "./components/tweet";
 
 const App = () => {
   const [tweetList, setTweetList] = useState([]);
@@ -13,7 +13,7 @@ const App = () => {
         .get(`/twitter`)
         .then(res => res.data)
         .then(data => setTweetList(data));
-    }, 2000);
+    }, 100);
     return () => clearInterval(interval);
   }, []);
 
@@ -21,15 +21,15 @@ const App = () => {
     <div className="App">
       <h1>Home</h1>
       <MakeTweet />
-      {
-        tweetList.map(t => <Tweet
+      {tweetList.map(t => (
+        <Tweet
           key={t.id}
           id={t.id}
           content={t.content}
           username={t.username}
           name={t.name}
-        />)
-      }
+        />
+      ))}
     </div>
   );
 };
