@@ -19,17 +19,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Home</h1>
-      <MakeTweet />
-      {tweetList.map(t => (
-        <Tweet
-          key={t.id}
-          id={t.id}
-          content={t.content}
-          username={t.username}
-          name={t.name}
-        />
-      ))}
+      <div>
+        <h1>Home</h1>
+        <MakeTweet />
+        {tweetList.map(t => (
+          <Tweet
+            key={t.id}
+            id={t.id}
+            content={t.content}
+            username={t.username}
+            name={t.name}
+            replyFlag={true}
+          />
+        ))}
+      </div>
     </div>
   );
 };
