@@ -2,7 +2,7 @@ const mysqlConnection = require("../connection");
 
 exports.getTweets = (req, res) => {
   mysqlConnection.query(
-    "SELECT TWEET.id, content, username, name from TWEET JOIN USER ON TWEET.user_id = USER.id",
+    "SELECT TWEET.id, content, username, name from TWEET JOIN USER ON TWEET.user_id = USER.id ORDER BY TWEET.id DESC",
     (err, rows, fields) => {
       if (err) {
         res.status(404).send({ error: "Something failed!" });
@@ -130,7 +130,7 @@ let tweetById = (tweet_id, callback) => {
 
 let replysById = (tweet_id, callback) => {
   mysqlConnection.query(
-    `SELECT REPLY.id, content, username, name from REPLY JOIN USER ON REPLY.user_id = USER.id WHERE thread_id = ${tweet_id}`,
+    `SELECT REPLY.id, content, username, name from REPLY JOIN USER ON REPLY.user_id = USER.id WHERE thread_id = ${tweet_id} ORDER BY REPLY.id DESC`,
     (err, rows, fields) => {
       callback(rows, err);
     }

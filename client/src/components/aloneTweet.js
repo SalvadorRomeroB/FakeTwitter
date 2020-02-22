@@ -111,7 +111,7 @@ const AloneTweet = props => {
         }
 
         .reply-button {
-          padding: 13px 4px 1px 4px;
+          padding: 120px 4px 1px 4px;
           border-radius: 30px;
         }
 
